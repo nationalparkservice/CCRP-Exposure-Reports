@@ -9,7 +9,7 @@ params:
     label: "Park Name"
     value: FOUN
     input: select
-    choices: [FOUN, TUZI, MOCA]
+    choices: [MOCA]
 toc: true
 theme: united
 ---
@@ -50,14 +50,14 @@ This *climate change exposure report* describes both recent changes in climate (
 Temperatures in `r params$name` have already increased significantly (Figure 1.) Average annual temperature increased at `r Exposure.Data$Tavg.rate.1900` °F per century (p \< 0.001) from 1900-2022, and since 1970 -- when anthropogenic climate changes become more apparent -- at the extremely rapid rate of `r Exposure.Data$Tavg.rate.1970` °F per century (p \< 0.001)[[1]](#_ftn1) (Figure 1; See Runyon et al. [*In prep*] for full methodological details and plain-language FAQ). Annual temperature anomalies in `r Exposure.Data$Tavg.Anomalies.1` and `r Exposure.Data$Tavg.Anomalies.2` have been exceeded `r Exposure.Data$Tavg.Anomalies.recent` percent of years since 2000 (Tavg.Anomalies.recent.percent %). Since 1970, daily minimum (night-time) temperatures have increased more rapidly than daily maximum (daytime) temperatures, and therefore nights are warmer and the range between daytime and nighttime temperatures has diminished. Precipitation has `r Exposure.Data$Prcp.trend` since 1970 but remains highly variable. Years with historically high precipitation totals (e.g., `r Exposure.Data$PrcpAbove.Anomalies.1` and `r Exposure.Data$PrcpAbove.Anomalies.2`) occur less frequently. This trend in `r params$name`-specific data is consistent with regional trends towards more frequent extreme rainfall events (Figure 2).
 
 ```{r, echo=FALSE}
-fig1 <- paste0("data/", params$name, "/", params$name, "-Historical/Annual Means Lines Regressions Tmean Precip.png")
+fig1 <- paste0("data/", params$name, "/", params$name, "-Historical/AnnualMeansLinesRegressionsTmeanPrecip.png")
 ```
 
-![**Figure 1.** Historical trends in annual average temperature (upper plot) and annual total precipitation (lower plot) for `r params$name` from 1895-2022. Black points show yearly values while the red line represents the 10-year rolling average. Blue lines are linear regressions for the entire period record, up to 1970, and 1970-present. Solid lines are significant trends (i.e., p\<0.05); dashed lines are not statistically significant.](%60r%20fig1%60){width="400"}
+![**Figure 1.** Historical trends in annual average temperature (upper plot) and annual total precipitation (lower plot) for `r params$name` from 1895-2022. Black points show yearly values while the red line represents the 10-year rolling average. Blue lines are linear regressions for the entire period record, up to 1970, and 1970-present. Solid lines are significant trends (i.e., p\<0.05); dashed lines are not statistically significant.](`r fig1`){width="400"}
 
 [[1]](#_ftnref1) Data: NClimGrid (Vose et al. 2014). Analysis: CCRP for 1895-2022 data.
 
-![**Figure 2.** Maps showing observed changes in metrics of extreme precipitation by region, including (upper left) the maximum daily precipitation in consecutive 5-year blocks, (upper right) the amount of precipitation falling in daily events that exceed the 99th percentile of all non-zero precipitation days, (lower left) the number of 2-day events with a precipitation total exceeding the largest 2-day amount that is expected to occur, on average, only once every 5 years, as calculated over 1901--2016, and (lower right) the number of 2-day events with a precipitation total exceeding the largest 2-day amount that is expected to occur, on average, only once every 5 years, as calculated over 1958--2016. The numerical value is the percent change over the entire period, either 1901--2016 or 1958--2016. The percentages are first calculated for individual stations, then averaged over 2° latitude by 2° longitude grid boxes, and finally averaged over each NCA4 region. (Source: Easterling et al. 2017; Figure source: CICS-NC and NOAA NCEI).](data/TotalAnnualPrecip.png){width="350"}
+![**Figure 2.** Map showing observed changes by region in the amount of precipitation falling in daily events that exceed the 99th percentile of all non-zero precipitation days. The numerical value is the percent change over the entire period,1958–2016. The percentages are first calculated for individual stations, then averaged over 2° latitude by 2° longitude grid boxes, and finally averaged over each NCA4 region. (Source: Easterling et al. 2017; Figure source: CICS-NC and NOAA NCEI).](data/TotalAnnualPrecip.png){width="350"}
 
 # Projected climate change
 
@@ -73,7 +73,7 @@ Uncertainty exists regarding the direction in which annual precipitation with ch
 fig3 <- paste0("data/", params$name, "/WarmWet_HotDry/figures/TavgF-PrcpIn-Timeseries.png")
 ```
 
-![**Figure 3.** Historically observed data (gray lines; 1979-2020) and climate futures (blue and red lines;2023-2099) for annual mean temperature and precipitation in `r params$name`. Respectively, the blue and red lines represent the warm wet and hot dry climate futures. The smooth, dark line running through each projection is the 10-year running average. Gray-shaded area represents the time period (2025-2055) over which projections were averaged to summarized changes from the baseline (Appendix 1).](%60r%20fig3%60){width="400"}
+![**Figure 3.** Historically observed data (gray lines; 1979-2020) and climate futures (blue and red lines;2023-2099) for annual mean temperature and precipitation in `r params$name`. Respectively, the blue and red lines represent the warm wet and hot dry climate futures. The smooth, dark line running through each projection is the 10-year running average. Gray-shaded area represents the time period (2025-2055) over which projections were averaged to summarized changes from the baseline (Appendix 1).](`r fig3`){width="400"}
 
 ## Extreme Events
 
@@ -84,10 +84,10 @@ Average temperature and precipitation changes, particularly annual measures, can
 Extreme temperatures threaten park staff and visitor safety, accelerate weathering of structures, and increase stress on ventilation and air conditioning systems. If not addressed through building design or more efficient temperature control systems, the increased demand for complex air conditioning systems can add stress to building envelopes and require significant alterations to structures. The Occupational Safety and Health Administration (OSHA) has established guidelines (OSHA 2019) associated with heat index classifications and protective measures that should be taken for ranges of heat index values. In 2004, the NPS Risk Management Office issued guidance that general heat stress controls should be applied when heat index exceeds 105 °F, which is within the "dangerous" heat index range (NPS 2004). Extreme temperatures are expected to increase at `r params$name` under both climate futures (Figure 4) with + `r Exposure.Data$HI.Dan.CF1` days/yr exceeding the dangerous heat index threshold for the more modest Warm Wet climate future and + `r Exposure.Data$HI.Dan.CF2` days/yr of those incidents under the Hot Dry future.
 
 ```{r, echo=FALSE}
-fig4 <- paste0("data/", params$name, "/WamWet_HotDry/figures/OverHotTemp-HI.Dan-Panel.jpg")
+fig4 <- paste0("data/", params$name, "/WarmWet_HotDry/figures/OverHotTemp-HI.Dan-Panel.jpg")
 ```
 
-![**Figure 4.** Metrics of extreme temperature at `r params$name`. The upper plot represents the number of days per year when maximum temperature exceeds the historical 95th percentile at `r params$name` historically and in both climate futures. The lower plot is the number of days per year when heat index reaches 'dangerous' levels (103-124 °F).](%60r%20fig4%60){width="400"}
+![**Figure 4.** Metrics of extreme temperature at `r params$name`. The upper plot represents the number of days per year when maximum temperature exceeds the historical 95th percentile at `r params$name` historically and in both climate futures. The lower plot is the number of days per year when heat index reaches 'dangerous' levels (103-124 °F).](`r fig4`){width="400"}
 
 **Extreme precipitation**
 
@@ -99,7 +99,7 @@ Extreme precipitation is expected to increase at `r params$name` under both clim
 fig5 <- paste0("data/", params$name,"/WarmWet_HotDry/figures/Recurrenceinterval-OverPrecip95-Panel.png")
 ```
 
-![**Figure 5.** Upper plot: Modeled recurrence intervals (annual) for 24-hour precipitation events for each climate future and the historical period. The x axis indicates the return period expected for the amount of precipitation received in a day indicated on the y axis (see Methodological note for details). Lower plot: Number of days per year in which rainfall ≥ `r Exposure.Data$HistPrecip99` inches, the historical 95th-percentile event.](%60r%20fig5%60){width="400"}
+![**Figure 5.** Upper plot: Modeled recurrence intervals (annual) for 24-hour precipitation events for each climate future and the historical period. The x axis indicates the return period expected for the amount of precipitation received in a day indicated on the y axis (see Methodological note for details). Lower plot: Number of days per year in which rainfall ≥ `r Exposure.Data$HistPrecip99` inches, the historical 95th-percentile event.](`r fig5`){width="400"}
 
 **Drought (drought characteristics)**
 
@@ -111,7 +111,7 @@ The Standardized Precipitation Evaporation Index (SPEI) integrates temperature a
 fig6 <- paste0("data/", params$name, "/WarmWet_HotDry/figures/DroughtCharacteristics-2-Panel.png")
 ```
 
-![**Figure 6.** Drought metrics for `r params$name`. The upper two plots show annual standardized precipitation and evapotranspiration index (SPEI) values for the observed historical period (1979-2020) and the two climate futures (2023-2099). The gray shaded area represents the 2025-2055 period upon which the characteristics are averaged (See climate exposure methods note <INSERT LINK> for methodological details). The lower three plots show characteristics of average drought conditions for the historical period (1979-2012) and two climate futures (2025-2055).](%60r%20fig6%60){width="400"}
+![**Figure 6.** Drought metrics for `r params$name`. The upper two plots show annual standardized precipitation and evapotranspiration index (SPEI) values for the observed historical period (1979-2020) and the two climate futures (2023-2099). The gray shaded area represents the 2025-2055 period upon which the characteristics are averaged (See climate exposure methods note <INSERT LINK> for methodological details). The lower three plots show characteristics of average drought conditions for the historical period (1979-2012) and two climate futures (2025-2055).](`r fig6`){width="400"}
 
 **Wildfire**
 
@@ -125,7 +125,7 @@ Climatic water deficit -- the difference between potential evapotranspiration an
 fig7 <- paste0("data/", params$name, "/WarmWet_HotDry/figures/Panel-D.in-WaterBalance.png")
 ```
 
-![**Figure 7.** The upper plot shows historical (gray lines; 1979-2020) and climate futures (blue and red lines; 2023-2099) of mean annual climatic water deficit in `r params$name`. Metrics representing fire hazards. Top panel shows AET and climatic water deficit using individual projections. Both metrics correlate strongly with wildfire risk (Kane et al. 2014). The lower plot shows (annual) distributions of climatic water deficit relative to annual actual evapotranspiration historically and for each climate future.](%60r%20fig7%60){width="400"}
+![**Figure 7.** The upper plot shows historical (gray lines; 1979-2020) and climate futures (blue and red lines; 2023-2099) of mean annual climatic water deficit in `r params$name`. Metrics representing fire hazards. Top panel shows AET and climatic water deficit using individual projections. Both metrics correlate strongly with wildfire risk (Kane et al. 2014). The lower plot shows (annual) distributions of climatic water deficit relative to annual actual evapotranspiration historically and for each climate future.](`r fig7`){width="400"}
 
 **Invasive species and pests**
 

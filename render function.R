@@ -1,7 +1,7 @@
 # Rendering rmarkdown Exposure Reports
 
 # Choice of parks
-choices <- c("FOUN", "TUZI")
+choices <- c("SACN")
 
 
 # Function
