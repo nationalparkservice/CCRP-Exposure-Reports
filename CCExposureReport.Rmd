@@ -7,7 +7,7 @@ output:
 params:
   name: 
     label: "Park Name"
-    value: FOUN
+    value: TUZI
     input: select
     choices: [MOCA]
 toc: true
