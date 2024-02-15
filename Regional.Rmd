@@ -1,0 +1,142 @@
+---
+title: "Regional"
+output: word_document
+date: "2024-2-13"
+---
+
+```{r test, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Extreme precipitation
+
+Testing.
+
+Hold for more regional text.
+
+Testing.
+
+```{r sectionA, echo=FALSE}
+"Text text text"
+```
+
+**Midwest**
+
+The frequency of intense precipitation throughout the MWR increased up to 53% from 1958-2016, especially in the upper central and Great Lakes states (@Easterling2017) and projections for all emissions scenarios are for additional increases in the future. Intense precipitation, especially on snow, can result in record-setting flooding, higher water tables, extreme erosion and changes in stream and riverbanks, sustained loss of infrastructure (access, power, water, sewer). Saturated soils may fail to support roads, pilings, foundations and other structural supports. Increased humidity, flooding, and driving rain can damage building cladding, increase risk of mold and rot, and promote insect damage.
+
+Flood trends show high spatial variability depending on catchment conditions and the flood generating mechanism. In many cases, climate is just one factor leading to flooding, with urbanization and other land cover changes exerting a strong influence (@Criss2017, @Angel2018). In some cases, it is inadequate to assume that design flood values will be consistent as climate changes, so local studies to characterize changes in extreme flows (@VanDusen2020) or safety improvements may be necessary to account for climate change in infrastructure design. 
+
+**Northeast**
+
+For the northeastern U.S. as a whole, five year storms (a two-day period with more precipitation than any other two-day period in five years) are projected to increase to once every two years or every year (@Easterling2017). In addition, precipitation in 20-year storms (a storm with more precipitation than any other storm in 20 years) is projected to increase 22% under a high greenhouse gas emissions scenario (@Easterling2017).
+
+# Drought
+
+**Northeast**
+
+The Northeast U.S. is a wet region that historically experiences damaging droughts, despite simultaneous increasing precipitation (@Dupigny-Giroux2018). Climate models suggest that, despite projected increasing precipitation, increased temperatures and precipitation variability will likely lead to more frequent short, but intense drought conditions (@Krakauer2019, @Pendergrass2020). These "flash droughts" are characterized by short, intense sudden onset droughts and rapid intensification of conditions with severe impacts (@Pendergrass2020). In 2016, the Northeast  experienced an abnormally warm, dry summer, preceded by low winter snowfall causing a flash drought that challenged water resource managers throughout the region (@Sweet2017).
+
+# Southeast
+
+Although annual precipitation totals in the Southeastern U.S. haven't changed statistically over the past century, increasing intensity of extreme events and hotter, drier summers have led to droughts becoming more intense and longer (Kunkel et al. 2013, USDA 2017, Carter  et al. 2018). The short, fall drought of 2016 produced the worst wildfires experienced in the Southeast in a century (Carter et al. 2018). Climate change is expected to continue intensifying the hydrological cycle, increasing the frequency and severity of extreme events like drought (Mitchell et al. 2014, Carter et al. 2018) and analysis suggests that future increases in temperature and evapotranspiration will outstrip increases in precipitation (Mitra et al. 2018). 
+
+**Mountains**
+
+The intermountain region is drought-prone. A high degree inter-annual variability in precipitation is characteristic of the Northern Plains, leading to periodic drought conditions and creating uncertainty that is challenging for water resource management. This variability in precipitation, coupled with increasing temperatures create conditions for rapid onset of intense droughts, with conditions deteriorating quickly. These "flash droughts" rapidly decreased soil moisture, resulting in both the 2012 and 2020 extreme wildfire seasons. Climate change projections are uncertain about precipitation changes, but warmer temperatures will increase evaporative demand, worsening drought conditions. Short-term "flash droughts" are expected to intensify in this region (@Shafer2014), which will be worsened by declining snowpack from winter warming and will likely stress water supply systems. 
+
+**Pacific NW**
+
+Droughts occur in the Pacific Northwest when warm or dry winters reduce snowpack or when hot, dry summers reduce soil moisture and streamflow. A record warm 2015 winter led to historically low snowpack in much of the Northwestern mountains as winter precipitation fell as rain instead of snow, resulting in drought, water scarcity, and wildfire throughout the region (@Mote2016, @May2018). Climate change-drive temperatures increases are expected to deepen droughts in this region, particularly in areas with snowpack. Declining snowpack is expected to amplify summer drought conditions, increasing vulnerability to typical droughts caused by inter-annual precipitation variability. Drought conditions present challenges for infrastructure, particularly water supplies. The 2015 drought necessitated use of $7 million of relief funds to be used for backup emergency water supplies in Washington (@May2018).
+
+**Southwest**
+
+Droughts are common in the Southwest region but are becoming more frequent and severe. Periods of low precipitation from natural variability are the primary cause of drought, but increasing temperatures due to climate change have amplified recent droughts in the region, severely stressing water resources. The 2000-2019 SW drought was second driest 19-yr period since 800 CE (@Williams2020). Hotter temperatures projected by climate change models show increasing probability of decadal to multi-decadal megadroughts (persistent droughts lasting longer than a decade) even when precipitation increases (@Gonzalez2018), (@Williams2020). Warming winters amply droughts by causing "snow droughts" which occur from lack of precipitation, temperatures that are too warm for snow, or a combination of the two (@Gonzalez2018), (@Mote2018). 
+
+**Midwest**
+
+The Midwest U.S. experiences intermittent, damaging droughts, despite increasing precipitation. Climate change projections show that Midwest surface soil moisture will transition from saturated in the spring (due to increasing precipitation) to rapid drying in the summer, driven by higher temperatures (@Wehner2017, @Angel2018). The 2012 drought was the most intense and widespread drought on record for the past hundred years (@Jin2019) and developed quickly with rapid intensification as summer temperatures increased. These "flash droughts" are expected to increase in frequency and severity due to increasing precipitation variability and rising temperatures and will challenge water resource management throughout the region (@Pendergrass2020). Rapidly changing soil moisture with soil shrinkage and heaves can cause soil cracking and structural issues with pipes, roads, and buildings (@Fernandes2015).
+
+## Wildfire
+
+**Mountains**
+
+In the western U.S., analyses of causal factors have found that human-caused climate change has doubled the area burned by wildfire since 1984 above natural levels, mainly through drying of vegetation (@Abatzoglou2016). Under the highest greenhouse gas emissions scenario, projected climate change could increase the frequency of large fires (>50 km2, 20 sq. mi.) up to three times across the forests of the western U.S. by 2050 (@Barbero2015).
+
+In the Great Plains states, under the highest greenhouse gas emissions scenario, projected climate change could increase the frequency of large fires (>50 km2, 20 sq. mi.) up to six times in the grasslands of Montana, North and South Dakota, and Nebraska by 2050 (@Barbero2015).
+
+**Midwest**
+
+In the midwestern U.S., analyses have not detected a historical change in the area burned by wildfire attributable to human-caused climate change. Under the highest greenhouse gas emissions scenario, projected climate change could increase the frequency of large fires (>50 km2, 20 sq. mi.) up to six times in the boreal forests of Michigan, Wisconsin, and Minnesota by 2050 (@Barbero2015).
+
+**Northeast**
+
+Under the highest greenhouse gas emissions scenario, projected climate change could increase the frequency of large fires (>50 km2, 20 sq. mi.) in Pennsylvania and southern New Jersey forests, up to a doubling by 2050 (@Barbero2015).
+
+**Pacific WR**
+
+In the western U.S., analyses of causal factors have found that human-caused climate change has doubled the area burned by wildfire since 1984 above natural levels, mainly through drying of vegetation (@Abatzoglou2016). Under the highest greenhouse gas emissions scenario, projected climate change could increase the frequency of large fires (>50 km2, 20 sq. mi.) up to three times across the forests of the western U.S. by 2050 (@Barbero2015).
+
+**Southeast**
+
+Under the highest greenhouse gas emissions scenario, projected climate change could increase the frequency of large fires (>50 km2, 20 sq. mi.) up to double in the forests of the Appalachian Mountains and up to three times in forests of the Atlantic Coast, Florida, and Gulf Coast by 2050 (@Barbero2015).
+
+## Invasive species and pests
+
+
+## ---- Coastal
+
+**Northeast**
+
+### Coastal 
+
+Cumulative impacts of sea level rise and storm surge on `r params$name` ecosystems threaten the stability of the land on which infrastructure is based and will flood many of those structures during intense storm events. Higher relative sea level causes accelerated coastal erosion, landward migration of shorelines, saltwater intrusion and changes in groundwater, and amplifies flooding caused by higher storm surges. Sea level rise poses considerable risks to infrastructure, lighthouses, forts, and other historic structures.
+
+
+Since coastal terrestrial and freshwater ecosystems are highly sensitive to increases in inundation and salinity, sea level rise could result in the rapid conversion of these systems to tidal saline habitats. Historically, coastal ecosystems in the region have adjusted to sea level rise by vertical and horizontal movement across the landscape (@Doyle2015). As sea levels rise in the future, some coastal ecosystems will be submerged and converted to open water, and saltwater intrusion will allow salt tolerant coastal ecosystems to move inland at the expense of upslope and upriver ecosystems (@Howard2017). 
+
+
+Where barriers are present (for example, levees and other coastal infrastructure), the potential for landward migration of natural systems will be reduced and certain coastal habitats will be lost. For example, mangroves or salt marshes—which stabilize sediments—might be able to keep pace with slowly rising sea levels by accumulating soil and effectively raising ground elevation. These habitats are also natural buffers for park infrastructure and help stabilize soils; restoring degraded areas and mitigating additional impacts to these “natural defenses” for park infrastructure must be a component of any park asset management plan. 
+
+
+Hurricanes also threaten structures via damage from wind, wind-blown rain, and debris. Their large temperature swings stress buildings through sudden thermal expansion and can crack pipes; they also can cause flooding and road wash outs. With higher sea levels and increasing saltwater intrusion, the high winds, high precipitation rates, and storm surges that accompany hurricanes will have large ecological impacts to terrestrial and freshwater ecosystems. 
+
+
+Tools are available to track sea level rise through the [NOAA Sea Level Rise Viewer](https://coast.noaa.gov/slr/) in locally mapped 1 foot increments or [NASA Sea Level Change Portal](https://sealevel.nasa.gov/task-force-scenario-tool) of interagency SLR scenarios (@Sweet2022) by decade based on the nearest NOAA tide gauge. For parks with exposure or vulnerability assessment by asset, check the [Climate Vulnerability Data Viewer](https://nps.maps.arcgis.com/apps/webappviewer/index.html?id=78106b24227f40c8b6bd9b34fd5d0c27), and the links for climate change vulnerability assessment for infrastructure through the [eTIC](https://pubs.nps.gov/), or [Coastal Facilities Vulnerability Assessments](https://www.nps.gov/subjects/climatechange/vulnerabilityandadaptation.htm).
+
+**Pacific WR**
+
+### Coastal 
+
+Cumulative impacts of sea level rise and storm surge on `r params$name` ecosystems threaten the stability of the land on which infrastructure is based and will flood many of those structures during intense storm events. Higher relative sea level causes accelerated coastal erosion, landward migration of shorelines, saltwater intrusion and changes in groundwater, and amplifies flooding caused by higher storm surges. Sea level rise poses considerable risks to infrastructure, lighthouses, forts, and other historic structures.
+
+Since coastal terrestrial and freshwater ecosystems are highly sensitive to increases in inundation and salinity, sea level rise could result in the rapid conversion of these systems to tidal saline habitats. Historically, coastal ecosystems in the region have adjusted to sea level rise by vertical and horizontal movement across the landscape (@Doyle2015). As sea levels rise in the future, some coastal ecosystems will be submerged and converted to open water, and saltwater intrusion will allow salt tolerant coastal ecosystems to move inland at the expense of upslope and upriver ecosystems (@Howard2017). 
+
+Where barriers are present (for example, levees and other coastal infrastructure), the potential for landward migration of natural systems will be reduced and certain coastal habitats will be lost. For example, mangroves or salt marshes—which stabilize sediments—might be able to keep pace with slowly rising sea levels by accumulating soil and effectively raising ground elevation. These habitats are also natural buffers for park infrastructure and help stabilize soils; restoring degraded areas and mitigating additional impacts to these “natural defenses” for park infrastructure must be a component of any park asset management plan. 
+
+Tools are available to track sea level rise through the [NOAA Sea Level Rise Viewer](https://coast.noaa.gov/slr/) in locally mapped 1 foot increments or [NASA Sea Level Change Portal](https://sealevel.nasa.gov/task-force-scenario-tool) of interagency SLR scenarios (@Sweet2022) by decade based on the nearest NOAA tide gauge, and for parks with exposure or vulnerability assessment by asset, through the [Climate Vulnerability Data Viewer](https://nps.maps.arcgis.com/apps/webappviewer/index.html?id=78106b24227f40c8b6bd9b34fd5d0c27). 
+
+**Gulf coast**
+
+### Coastal 
+
+Cumulative impacts of sea level rise and storm surge on `r params$name` ecosystems threaten the stability of the land on which infrastructure is based and will flood many of those structures during intense storm events. Higher relative sea level causes accelerated coastal erosion, landward migration of shorelines, saltwater intrusion and changes in groundwater, and amplifies flooding caused by higher storm surges. Sea level rise poses considerable risks to infrastructure, lighthouses, forts, and other historic structures.
+
+Since coastal terrestrial and freshwater ecosystems are highly sensitive to increases in inundation and salinity, sea level rise could result in the rapid conversion of these systems to tidal saline habitats. Historically, coastal ecosystems in the region have adjusted to sea level rise by vertical and horizontal movement across the landscape (@Doyle2015). As sea levels rise in the future, some coastal ecosystems will be submerged and converted to open water, and saltwater intrusion will allow salt tolerant coastal ecosystems to move inland at the expense of upslope and upriver ecosystems (@Howard2017). 
+
+Where barriers are present (for example, levees and other coastal infrastructure), the potential for landward migration of natural systems will be reduced and certain coastal habitats will be lost. For example, mangroves or salt marshes—which stabilize sediments—might be able to keep pace with slowly rising sea levels by accumulating soil and effectively raising ground elevation. These habitats are also natural buffers for park infrastructure and help stabilize soils; restoring degraded areas and mitigating additional impacts to these “natural defenses” for park infrastructure must be a component of any park asset management plan. 
+
+Hurricanes also threaten structures via damage from wind, wind-blown rain, and debris. Their large temperature swings stress buildings through sudden thermal expansion and can crack pipes; they also can cause flooding and road wash outs. With higher sea levels and increasing saltwater intrusion, the high winds, high precipitation rates, and storm surges that accompany hurricanes will have large ecological impacts to terrestrial and freshwater ecosystems. 
+
+Tools are available to track sea level rise through the [NOAA Sea Level Rise Viewer](https://coast.noaa.gov/slr/) in locally mapped 1 foot increments or [NASA Sea Level Change Portal](https://sealevel.nasa.gov/task-force-scenario-tool) of interagency SLR scenarios (@Sweet2022) by decade based on the nearest NOAA tide gauge. For parks with exposure or vulnerability assessment by asset, check the [Climate Vulnerability Data Viewer](https://nps.maps.arcgis.com/apps/webappviewer/index.html?id=78106b24227f40c8b6bd9b34fd5d0c27), and the links for climate change vulnerability assessment for infrastructure through the [eTIC](https://pubs.nps.gov/), or [Coastal Facilities Vulnerability Assessments](https://www.nps.gov/subjects/climatechange/vulnerabilityandadaptation.htm).
+
+## Phenology
+
+The timing of spring onset affects the seasonal life-history stages of plants throughout the national parks. Roughly three-quarters of parks (76%) are experiencing earlier spring onset than historical conditions, and this change is projected to reach all regions containing parks by mid-century (@Monahan2016). Earlier spring onset and longer growing seasons influenced by climate change will alter the phenological patterns of species that flower before or after peak summer heat, follow other temperature cues, or are driven by water availability. Spring timing can impact animals reliant on the rhythms of plant life stages (e.g., mismatches in plant-pollinator interactions), the timing of park operations, events, and visitor uses (e.g., road openings, flower festivals, and backcountry recreation), cascading effects on carbon cycling and other ecosystem processes, the risk of “false springs” that create devastating hard freezes and facilitate the spread of invasive species. 
+
+### Wildfire
+
+Wildfire is a natural part of many forest, woodland, and grassland ecosystems. Extremely severe and intense fires, however, can transform ecosystems, endanger human life, impact air quality, and damage infrastructure. Climate change is intensifying the heat that drives wildfire (@Jolly2015) and altering the distribution and density of vegetation that comprises the fuel for wildfires (@Westerling2016). The effects of climate change on wildfire vary across landscapes. For areas where projected climate change increases fire risk, buildings, cultural landscapes, and other infrastructure are vulnerable to burning and destruction. Furthermore, wildfires can endanger human life and the impacts of wildfire on air quality can have serious health impacts, especially for vulnerable populations. Finally, wildfire leaves a lasting, physical mark on ecosystems and natural landscapes which may alter park visitation, tourism, and recreation both during and after a wildfire.
+
+### Invasive species and pests
+
+For further reading on park-level nonnative species and pests, forest vulnerability briefs are available through the [NPS Eastern Forest Vulnerability](https://www.nps.gov/subjects/climatechange/forestvulnerability.htm) webpage.
