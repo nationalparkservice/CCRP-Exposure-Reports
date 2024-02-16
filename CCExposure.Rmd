@@ -39,7 +39,7 @@ knitr::include_graphics(npsband)
 knitr::include_graphics(cover1)
 ```
 
-Prepared by the National Park Service Climate Change Response Program, 2024
+<span style="credit line 1">Prepared by the National Park Service Climate Change Response Program, 2024</span>
 
 U.S. Department of the Interior
 
