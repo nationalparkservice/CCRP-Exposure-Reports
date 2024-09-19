@@ -3,12 +3,13 @@ params:
   name:
     label: Park Name
     value: params$name
-toc: yes
+toc: true
 toc_depth: 2
 theme: united
 output:
   word_document:
     reference_docx: template.docx
+    df_print: paged
 bibliography: ExposureReports.bib
 csl: ecology.csl
 ---
@@ -70,13 +71,13 @@ The NPS [Planning for a Changing Climate](https://irma.nps.gov/DataStore/Downloa
 
 Successful climate change planning requires us to understand that we will need to adapt to some impacts from climate change. [Climate change adaptation]{custom-style="Emphasis"} is defined as "an adjustment in natural or human systems that moderates harm or harnesses beneficial opportunities." Timely, forward-looking adaptation can help conserve cultural and natural resources, develop climate change-ready infrastructure, safeguard human well-being, and foster a positive visitor experience.[^1]
 
-[^1]: See [Climate Change Glossary](https://irmadev.nps.gov/DataStore/DownloadFile/665664) for full definition.
+[^1]: See [Climate Change Glossary](https://irma.nps.gov/DataStore/Reference/Profile/2287966) for full definition.
 
 This [climate futures summary]{custom-style="Emphasis"} describes both recent changes in climate (historical trends) and plausible climate futures at `r park$UNIT_NAME` (`r params$name`). [Climate futures]{custom-style="Emphasis"} are derived from models and explain different ways that the future might evolve at `r params$name` due to climate change. Climate futures help parks make short- and long-term [decisions that avoid surprises]{custom-style="Emphasis"} and costly mistakes. The approach of selecting and planning around several climate futures is a practical response to the impossibility of precisely predicting greenhouse gas emissions and how our climate will respond to them. [Runyon et al. (2024)](https://www.nps.gov/subjects/climatechange/climatefutures.htm) includes an in-depth description of methods used for these analyses. Please read the Disclaimer for further information about interpreting climate future summaries. 
 
 # Historical climate change
 
-Temperatures at `r params$name` have already increased considerably (Figure 1). Average annual temperature increased at the rate of `r Exposure.Data$Tavg.rate.1900` °F per century from 1895-2022, and since the acceleration of anthropogenic climate changes around 1970, temperatures have increased at the rate of `r Exposure.Data$Tavg.rate.1970` °F per century. The hottest two years before 2000 were `r Exposure.Data$Tavg.Anomalies.1` and `r Exposure.Data$Tavg.Anomalies.2`, and these anomalies were exceeded in `r Exposure.Data$Tavg.Anomalies.years` years since 2000 (`r Exposure.Data$Tavg.Anomalies.recent.percent`% of years). Since 1970, daily minimum (night-time) temperatures have increased more rapidly than daily maximum (daytime) temperatures, meaning nights are warmer and the range between daytime and nighttime temperatures has diminished. 
+Temperatures at `r params$name` have already increased considerably (Figure 1). Average annual temperature increased at the rate of `r Exposure.Data$Tavg.rate.1900` °F per century from 1895-2022, and since the acceleration of anthropogenic climate changes around 1970, temperatures have increased at the rate of `r Exposure.Data$Tavg.rate.1970` °F per century. The hottest two years before 2000 were `r Exposure.Data$Tavg.Anomalies.1` and `r Exposure.Data$Tavg.Anomalies.2``r Exposure.Data$PercentTYearsCondition` Since 1970, daily minimum (night-time) temperatures have increased more rapidly than daily maximum (daytime) temperatures, meaning nights are warmer and the range between daytime and nighttime temperatures has diminished. 
 
 Overall precipitation has `r Exposure.Data$Prcp.trend` since 1970 but remains highly variable. In addition to changes in average conditions, `r params$name` is also experiencing changes in extreme conditions. For example, there has been a `r Exposure.Data$ObservedPrcp`% increase in the amount of rain falling during heavy storms in the region since 1958 (Figure 2). This is because warm air can hold more water vapor, so as temperatures increase, precipitation will fall in more intense and severe events.
 
@@ -100,7 +101,7 @@ It is important to note the naming of these futures is relative to one another, 
 
 Average annual temperatures are projected to increase under both the `r CF1.Name` and `r CF2.Name` climate futures relative to the historical baseline period (1979-2012). Increases by 2050 under the `r CF1.Name` climate future are considerable (+`r Exposure.Data$DeltaTavg.CF1` °F) and increases under the `r CF2.Name` climate future are extreme (+`r Exposure.Data$DeltaTavg.CF2` °F) (Figure 3. See Appendix 1 for "Projected changes in climate metrics"). 
 
-To put this in context, the hottest two years recorded at `r params$name` prior to 2000 (`r Exposure.Data$Tavg.Anomalies.1` and `r Exposure.Data$Tavg.Anomalies.2`) would be "average" temperature years in the `r CF1.Name` climate future. Average temperatures under the `r CF2.Name` climate future would generally exceed anything experienced at `r params$name` in recent history. These projections are consistent with temperature increases already observed due to climate change at `r params$name`.
+To put this in context, most historically hot years recorded at `r params$name` would be "average" temperature years in the `r CF1.Name` climate future. Average temperatures under the `r CF2.Name` climate future would generally exceed anything experienced at `r params$name` in recent history. These projections are consistent with temperature increases already observed due to climate change at `r params$name`.
 
 Increases in average temperatures can result in a range of impacts on both human life and ecosystems. Rising temperatures can stress plants and animals not accustomed to living in warmer temperatures. Temperature increases can lead to intense heat waves that threaten human health, especially for vulnerable populations. Finally, rising temperatures often lead to worsening drought conditions and increased wildfire risk.
 
@@ -130,7 +131,7 @@ Average temperature and precipitation changes, particularly annual measures, can
 
 `r Exposure.Data$ExtremeTemps`
 
-Extreme temperatures can also lead to infrastructure issues, such as accelerating the weathering of structures, stressing power grids and air conditioning systems, buckling and cracking roadways, and other secondary effects. Parks should consider adaptation principles in design, construction, and maintenance of infrastructure--for example, installing additional shade structures to reduce visitor exposure to extreme heat. 
+Extreme temperatures can also lead to infrastructure issues, such as accelerating the weathering of structures, stressing power grids and air conditioning systems, buckling and cracking roadways, and other secondary effects. Parks should consider adaptation principles in design, construction, and maintenance of infrastructure—for example, installing additional shade structures to reduce visitor exposure to extreme heat. 
 
 ```{r, echo=FALSE}
 fig5 <- paste0("data/",params$name,"/",CF_selected,"/figures/",fig5code)
@@ -142,7 +143,7 @@ fig5 <- paste0("data/",params$name,"/",CF_selected,"/figures/",fig5code)
 
 Changes in extreme precipitation are characterized by two factors: frequency (how often extreme precipitation events occur) and intensity (amount of rainfall during an event). Although both intensity and frequency often change in the same direction, impactful consequences, like ground saturation or rapid runoff, can result from changes in either intensity or frequency alone.  
 
-`r Exposure.Data$ExPrcTrend`. Figure 6 shows the number of days per year in which precipitation at `r params$name` is greater than or equal to `r Exposure.Data$HistPrecip99` inches in 24 hours, which is the historical (1979-2012) 99th-percentile event. This measure of extreme precipitation frequency shows that the number of days with extreme precipitation greater than the historical 99th percentile is projected to `r Exposure.Data$Prcp99thTrend`. The 24-hour period with the most precipitation observed historically (1979-2012) was `r Exposure.Data$Prcp.max.hist` inches. The largest rainfall event projected in the future 30-year period (2023-2065) is `r Exposure.Data$Future.PrcpIn.CF1` inches for the `r CF1.Name` climate future and `r Exposure.Data$Future.PrcpIn.CF2` inches for the `r CF2.Name` climate future. Note that the maximum 24-hour precipitation events for the 30-year period are `r Exposure.Data$Prcp24HrTrend`. This reflects the fact that climate change is projected to lead to more intense extremes in precipitation (@NCA5). Managers should consider potential impacts to infrastructure from flooding, disruptions to transportation routes, water quality impacts from stormwater runoff into freshwater systems, and the potential for landslides or mudslides. 
+`r Exposure.Data$ExPrcTrend`. Figure 6 shows the number of days per year in which precipitation at `r params$name` is greater than or equal to `r Exposure.Data$HistPrecip99` inches in 24 hours, which is the historical (1979-2012) 99th-percentile event. This measure of extreme precipitation frequency shows that the number of days with extreme precipitation greater than the historical 99th percentile is projected to `r Exposure.Data$Prcp99thTrend`. The 24-hour period with the most precipitation observed historically (1979-2012) was `r Exposure.Data$Prcp.max.hist` inches. The largest rainfall event projected in the future 30-year period (2035-2065) is `r Exposure.Data$Future.PrcpIn.CF1` inches for the `r CF1.Name` climate future and `r Exposure.Data$Future.PrcpIn.CF2` inches for the `r CF2.Name` climate future. Note that the maximum 24-hour precipitation events for the 30-year period are `r Exposure.Data$Prcp24HrTrend`. This reflects the fact that climate change is projected to lead to more intense extremes in precipitation (@NCA5). Managers should consider potential impacts to infrastructure from flooding, disruptions to transportation routes, water quality impacts from stormwater runoff into freshwater systems, and the potential for landslides or mudslides. 
 
 ```{r, echo=FALSE}
 fig6 <- paste0("data/",params$name,"/",CF_selected,"/figures/OverPrecip99-Annual-bar.png")
@@ -159,7 +160,7 @@ fig7 <- paste0("data/",params$name,"/",CF_selected,"/figures/SPEI-Panel.png")
 
 ![[Figure 7.]{custom-style="Strong"} Drought metrics for `r params$name`. Drought index (SPEI; units = standard deviations from historical) timeseries for each climate future. Below-average SPEI (black bars) indicates dry conditions. The dotted line (SPEI = -0.5) indicates drought conditions.](`r fig7`){width="576"}
 
-Figure 8 complements the SPEI data by providing a more detailed view of projected drought characteristics in the region. Drought duration (left graph) refers to the length of time during which the area experiences continuous drought conditions, extending the impact on water availability in the area. The drought-free interval (middle graph, an alternative measure of drought frequency) represents periods between drought events when there is sufficient water availability. More years in a drought-free interval signify more extended periods of recovery from drought. Drought severity (right graph) reflects the intensity of drought conditions compounded by the duration of the drought period. `r Exposure.Data$DrtCFsTrend`
+Figure 8 complements the SPEI data by providing a more detailed view of projected drought characteristics in the region. Drought duration (left graph) refers to the length of time during which the area experiences continuous drought conditions, extending the impact on water availability in the area. The drought-free interval (middle graph, an alternative measure of drought frequency) represents periods between drought events when there is sufficient water availability. More years in a drought-free interval signify more extended periods of recovery from drought. Drought severity (right graph) reflects the intensity of drought conditions compounded by the duration of the drought period.
 
 For `r params$name`, drought under a `r CF2.Name` climate future is projected to become `r Exposure.Data$DrtTrend.CF2`. For the `r CF1.Name` climate future, droughts are projected to become `r Exposure.Data$DrtCF1Duration` and `r Exposure.Data$DrtCF1Severity` severe, `r Exposure.Data$DrtGrammar.CF1` `r Exposure.Data$Drt.Severity.Length.CF1`.
 
@@ -213,9 +214,9 @@ fig9 <- paste0("data/",params$name,"/",CF_selected,"/figures/D.in-Timeseries.png
 
 Other potential climate-related impacts that may occur at `r params$name` but cannot be represented by basic climate exposure metrics are described below. While these impacts are based on general literature review for the region and are not specific to `r params$name`, park staff should be aware of their potential threat and further study may be warranted.
 
-```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 if (NPVuln$High.impact.projected.fire[which(NPVuln$code == params$name)] == 1 | NPVuln$High.impact.current.fire[which(NPVuln$code == params$name)] == 1){
-  cat(readLines('Regional.Rmd')[c(136:139)], sep = '\n')
+  cat(readLines('Regional.Rmd')[c(131:134)], sep = '\n')
 } else {
   cat(" ")
 }
@@ -249,9 +250,9 @@ if (length(matching_indices_fire) > 0) {
 ### Invasive species and pests
 
 Climate change can accelerate the introduction and spread of invasive species, and invasive species can amplify the effects of climate change (@Beaury2020). Extreme weather events may stress native species, create opportunities for invasive species movement, and alter mean conditions that affect species' life cycles and their ability to spread into new areas. Climate change can also affect the timing and efficacy of current invasive management treatments. Terrestrial and aquatic invasive species have the potential to cause direct damage to power, water, transportation, and building facilities (@Vissichelli2018) and impact natural and cultural resources. `r params$name` is in a region where climate change can favor invasive alien plant species in temperate zone ecosystems due to increased warmth, humidity, vegetation disturbances, and atmospheric carbon dioxide (@Davidson2011, @Hellmann2008, @Liu2017). Indirect climate change impacts may also affect facilities through forest insect pest invasions or fluctuating groundwater levels leading to increased vegetation stress, mortality, and treefall. The potential for increased invasive species should be prevented or mitigated through early detection and rapid response procedures. The [National Invasive Species Council](https://www.doi.gov/invasivespecies/early-detection-and-rapid-response) recently released EDRR tools and lessons learned and have additional resources for monitoring and managing invasive species and climate change. The [NPS Integrated Pest Management Program](https://www.nps.gov/orgs/1103/ipm.htm) also have resources available to help parks detect and prevent pests.
-```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 if (ExpRegion$STATE[which(ExpRegion$UNIT_CODE == params$name)] %in% c("ME", "VT", "NH", "MA", "RI", "CT", "NY", "NJ", "PA", "DE", "MD", "VA", "WV", "OH", "MI", "WV", "NC", "SC", "GA", "FL", "AL", "TN", "KY", "IN", "MS", "LA", "TX", "AR", "MO", "IL", "WI", "MN", "IA", "MO", "OK", "KS", "NE")) {
-  cat(readLines('Regional.Rmd')[c(142:143)], sep = '\n')
+  cat(readLines('Regional.Rmd')[c(137:138)], sep = '\n')
 } else {
   cat(" ")
 }
@@ -262,13 +263,13 @@ if (ExpRegion$STATE[which(ExpRegion$UNIT_CODE == params$name)] %in% c("ME", "VT"
 
 The timing of spring onset affects the seasonal life-history stages of plants throughout the national parks. Roughly three-quarters of parks (76%) are experiencing earlier spring onset than historical conditions, and this change is projected to reach all regions containing parks by mid-century (@Monahan2016). Earlier spring onset and longer growing seasons influenced by climate change will alter the phenological patterns of species that flower before or after peak summer heat, follow other temperature cues, or are driven by water availability. Spring timing can impact animals reliant on the rhythms of plant life stages (e.g., mismatches in plant-pollinator interactions), the timing of park operations, events, and visitor uses (e.g., road openings, flower festivals, and backcountry recreation), cascading effects on carbon cycling and other ecosystem processes, the risk of “false springs” that create devastating hard freezes and facilitate the spread of invasive species. 
 
-```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 if (NPVuln$High.impact.sea.level.or.surge[which(NPVuln$code == params$name)] == 1 && nps_boundary$REGION[which(nps_boundary$UNIT_CODE == params$name)] == "Northeast") {
-  cat(readLines('Regional.Rmd')[c(90:105)], sep = '\n')
+  cat(readLines('Regional.Rmd')[c(90:102)], sep = '\n')
 } else if (NPVuln$High.impact.sea.level.or.surge[which(NPVuln$code == params$name)] == 1 && nps_boundary$REGION[which(nps_boundary$UNIT_CODE == params$name)] == "Pacific West") {
-  cat(readLines('Regional.Rmd')[c(108:117)], sep = '\n')
-} else if (NPVuln$High.impact.sea.level.or.surge[which(NPVuln$code == params$name)] == 1 && nps_boundary$STATE[which(nps_boundary$UNIT_CODE == params$name)] %in% c("TX","AL","LA","FL","MS")) {
-  cat(readLines('Regional.Rmd')[c(120:131)], sep = '\n')
+  cat(readLines('Regional.Rmd')[c(105:112)], sep = '\n')
+} else if (NPVuln$High.impact.sea.level.or.surge[which(NPVuln$code == params$name)] == 1 && nps_boundary$STATE[which(nps_boundary$UNIT_CODE == params$name)] %in% c("TX","AL","LA","FL","MS","NC","SC","GA")) {
+  cat(readLines('Regional.Rmd')[c(115:126)], sep = '\n')
 } else {
   cat(" ")
 }
@@ -302,7 +303,7 @@ Adaptation planning considers [multiple scenarios]{custom-style="Emphasis"} of t
 
 [Table 1.]{custom-style="Strong"} Example worksheet that can be used to assess if desired conditions/goals are feasible under different climate futures.
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(flextable)
 
 if(CF1.Name == "Warm Wet"){
