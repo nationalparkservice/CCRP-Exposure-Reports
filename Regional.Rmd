@@ -10,15 +10,15 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Extreme precipitation
 
-Testing.
 
-Hold for more regional text.
 
-Testing...
 
-```{r sectionA, echo=FALSE}
-"Text text text"
-```
+
+
+
+
+
+
 
 **Midwest**
 
@@ -34,15 +34,15 @@ For the northeastern U.S. as a whole, five year storms (a two-day period with mo
 
 **Northeast**
 
-The Northeast U.S. is a wet region that historically experiences damaging droughts, despite simultaneous increasing precipitation (@Dupigny-Giroux2018). Climate models suggest that, despite projected increasing precipitation, increased temperatures and precipitation variability will likely lead to more frequent short, but intense drought conditions (@Krakauer2019, @Pendergrass2020). These "flash droughts" are characterized by short, intense sudden onset droughts and rapid intensification of conditions with severe impacts (@Pendergrass2020). In 2016, the Northeast  experienced an abnormally warm, dry summer, preceded by low winter snowfall causing a flash drought that challenged water resource managers throughout the region (@Sweet2017).
+The Northeast U.S. is a wet region that historically experiences damaging droughts, despite simultaneous increasing precipitation (@Dupigny-Giroux2018). Climate models suggest that, despite projected increasing precipitation, increased temperatures and precipitation variability will likely lead to more frequent short, but intense drought conditions (@Krakauer2019, @Pendergrass2020). These "flash droughts" are characterized by short, intense sudden-onset droughts and rapid intensification of conditions with severe impacts (@Pendergrass2020). In 2016, the Northeast  experienced an abnormally warm, dry summer, preceded by low winter snowfall causing a flash drought that challenged water resource managers throughout the region (@Sweet2017).
 
-# Southeast
+**Southeast**
 
 Although annual precipitation totals in the Southeastern U.S. haven't changed statistically over the past century, increasing intensity of extreme events and hotter, drier summers have led to droughts becoming more intense and longer (Kunkel et al. 2013, USDA 2017, Carter  et al. 2018). The short, fall drought of 2016 produced the worst wildfires experienced in the Southeast in a century (Carter et al. 2018). Climate change is expected to continue intensifying the hydrological cycle, increasing the frequency and severity of extreme events like drought (Mitchell et al. 2014, Carter et al. 2018) and analysis suggests that future increases in temperature and evapotranspiration will outstrip increases in precipitation (Mitra et al. 2018). 
 
 **Mountains**
 
-The intermountain region is drought-prone. A high degree inter-annual variability in precipitation is characteristic of the Northern Plains, leading to periodic drought conditions and creating uncertainty that is challenging for water resource management. This variability in precipitation, coupled with increasing temperatures create conditions for rapid onset of intense droughts, with conditions deteriorating quickly. These "flash droughts" rapidly decreased soil moisture, resulting in both the 2012 and 2020 extreme wildfire seasons. Climate change projections are uncertain about precipitation changes, but warmer temperatures will increase evaporative demand, worsening drought conditions. Short-term "flash droughts" are expected to intensify in this region (@Shafer2014), which will be worsened by declining snowpack from winter warming and will likely stress water supply systems. 
+Even in the Warm Wet climate future, a high degree of inter-annual variability in precipitation can lead to periodic drought conditions and create uncertainty that is challenging for water resource management. This variability in precipitation, coupled with increasing temperatures create conditions for rapid onset of intense droughts, with conditions deteriorating quickly. These "flash droughts" rapidly decreased soil moisture, resulting in both the 2012 and 2020 extreme wildfire seasons. Climate change projections are uncertain about precipitation changes, but warmer temperatures will increase evaporative demand, worsening drought conditions. Short-term "flash droughts" are expected to intensify in the intermountain region (@Shafer2014), which will be worsened by declining snowpack from winter warming and will likely stress water supply systems. 
 
 **Pacific NW**
 
@@ -89,13 +89,10 @@ Under the highest greenhouse gas emissions scenario, projected climate change co
 
 ### Coastal 
 
-Cumulative impacts of sea level rise and storm surge on `r params$name` ecosystems threaten the stability of the land on which infrastructure is based and will flood many of those structures during intense storm events. Higher relative sea level causes accelerated coastal erosion, landward migration of shorelines, saltwater intrusion and changes in groundwater, and amplifies flooding caused by higher storm surges. Sea level rise poses considerable risks to infrastructure, lighthouses, forts, and other historic structures.
+Cumulative impacts of sea level rise and storm surge on park ecosystems threaten the stability of the land on which infrastructure is based and will flood many of those structures during intense storm events. Higher relative sea level causes accelerated coastal erosion, landward migration of shorelines, saltwater intrusion and changes in groundwater, and amplifies flooding caused by higher storm surges. Sea level rise poses considerable risks to infrastructure, lighthouses, forts, and other historic structures.
 
 
-Since coastal terrestrial and freshwater ecosystems are highly sensitive to increases in inundation and salinity, sea level rise could result in the rapid conversion of these systems to tidal saline habitats. Historically, coastal ecosystems in the region have adjusted to sea level rise by vertical and horizontal movement across the landscape (@Doyle2015). As sea levels rise in the future, some coastal ecosystems will be submerged and converted to open water, and saltwater intrusion will allow salt tolerant coastal ecosystems to move inland at the expense of upslope and upriver ecosystems (@Howard2017). 
-
-
-Where barriers are present (for example, levees and other coastal infrastructure), the potential for landward migration of natural systems will be reduced and certain coastal habitats will be lost. For example, mangroves or salt marshes—which stabilize sediments—might be able to keep pace with slowly rising sea levels by accumulating soil and effectively raising ground elevation. These habitats are also natural buffers for park infrastructure and help stabilize soils; restoring degraded areas and mitigating additional impacts to these “natural defenses” for park infrastructure must be a component of any park asset management plan. 
+Since coastal terrestrial and freshwater ecosystems are highly sensitive to increases in inundation and salinity, sea level rise could result in the rapid conversion of these systems to tidal saline habitats. Historically, coastal ecosystems in the region have adjusted to sea level rise by vertical and horizontal movement across the landscape (@Doyle2015). Where barriers are present (for example, levees and other coastal infrastructure), the potential for landward migration of natural systems will be reduced and certain coastal habitats will be lost. For example, mangroves or salt marshes—which stabilize sediments—might be able to keep pace with slowly rising sea levels by accumulating soil and effectively raising ground elevation. These habitats are also natural buffers for park infrastructure and help stabilize soils; restoring degraded areas and mitigating additional impacts to these “natural defenses” for park infrastructure must be a component of any park asset management plan. 
 
 
 Hurricanes also threaten structures via damage from wind, wind-blown rain, and debris. Their large temperature swings stress buildings through sudden thermal expansion and can crack pipes; they also can cause flooding and road wash outs. With higher sea levels and increasing saltwater intrusion, the high winds, high precipitation rates, and storm surges that accompany hurricanes will have large ecological impacts to terrestrial and freshwater ecosystems. 
@@ -107,11 +104,9 @@ Tools are available to track sea level rise through the [NOAA Sea Level Rise Vie
 
 ### Coastal 
 
-Cumulative impacts of sea level rise and storm surge on `r params$name` ecosystems threaten the stability of the land on which infrastructure is based and will flood many of those structures during intense storm events. Higher relative sea level causes accelerated coastal erosion, landward migration of shorelines, saltwater intrusion and changes in groundwater, and amplifies flooding caused by higher storm surges. Sea level rise poses considerable risks to infrastructure, lighthouses, forts, and other historic structures.
+Cumulative impacts of sea level rise and storm surge on park ecosystems threaten the stability of the land on which infrastructure is based and will flood many of those structures during intense storm events. Higher relative sea level causes accelerated coastal erosion, landward migration of shorelines, saltwater intrusion and changes in groundwater, and amplifies flooding caused by higher storm surges. Sea level rise poses considerable risks to infrastructure, lighthouses, forts, and other historic structures.
 
-Since coastal terrestrial and freshwater ecosystems are highly sensitive to increases in inundation and salinity, sea level rise could result in the rapid conversion of these systems to tidal saline habitats. Historically, coastal ecosystems in the region have adjusted to sea level rise by vertical and horizontal movement across the landscape (@Doyle2015). As sea levels rise in the future, some coastal ecosystems will be submerged and converted to open water, and saltwater intrusion will allow salt tolerant coastal ecosystems to move inland at the expense of upslope and upriver ecosystems (@Howard2017). 
-
-Where barriers are present (for example, levees and other coastal infrastructure), the potential for landward migration of natural systems will be reduced and certain coastal habitats will be lost. For example, mangroves or salt marshes—which stabilize sediments—might be able to keep pace with slowly rising sea levels by accumulating soil and effectively raising ground elevation. These habitats are also natural buffers for park infrastructure and help stabilize soils; restoring degraded areas and mitigating additional impacts to these “natural defenses” for park infrastructure must be a component of any park asset management plan. 
+Since coastal terrestrial and freshwater ecosystems are highly sensitive to increases in inundation and salinity, sea level rise could result in the rapid conversion of these systems to tidal saline habitats. Where barriers are present (for example, levees and other coastal infrastructure), the potential for landward migration of natural systems will be reduced and certain coastal habitats will be lost. For example, mangroves or salt marshes—which stabilize sediments—might be able to keep pace with slowly rising sea levels by accumulating soil and effectively raising ground elevation. These habitats are also natural buffers for park infrastructure and help stabilize soils; restoring degraded areas and mitigating additional impacts to these “natural defenses” for park infrastructure must be a component of any park asset management plan. 
 
 Tools are available to track sea level rise through the [NOAA Sea Level Rise Viewer](https://coast.noaa.gov/slr/) in locally mapped 1 foot increments or [NASA Sea Level Change Portal](https://sealevel.nasa.gov/task-force-scenario-tool) of interagency SLR scenarios (@Sweet2022) by decade based on the nearest NOAA tide gauge, and for parks with exposure or vulnerability assessment by asset, through the [Climate Vulnerability Data Viewer](https://nps.maps.arcgis.com/apps/webappviewer/index.html?id=78106b24227f40c8b6bd9b34fd5d0c27). 
 
@@ -119,7 +114,7 @@ Tools are available to track sea level rise through the [NOAA Sea Level Rise Vie
 
 ### Coastal 
 
-Cumulative impacts of sea level rise and storm surge on `r params$name` ecosystems threaten the stability of the land on which infrastructure is based and will flood many of those structures during intense storm events. Higher relative sea level causes accelerated coastal erosion, landward migration of shorelines, saltwater intrusion and changes in groundwater, and amplifies flooding caused by higher storm surges. Sea level rise poses considerable risks to infrastructure, lighthouses, forts, and other historic structures.
+Cumulative impacts of sea level rise and storm surge on park ecosystems threaten the stability of the land on which infrastructure is based and will flood many of those structures during intense storm events. Higher relative sea level causes accelerated coastal erosion, landward migration of shorelines, saltwater intrusion and changes in groundwater, and amplifies flooding caused by higher storm surges. Sea level rise poses considerable risks to infrastructure, lighthouses, forts, and other historic structures.
 
 Since coastal terrestrial and freshwater ecosystems are highly sensitive to increases in inundation and salinity, sea level rise could result in the rapid conversion of these systems to tidal saline habitats. Historically, coastal ecosystems in the region have adjusted to sea level rise by vertical and horizontal movement across the landscape (@Doyle2015). As sea levels rise in the future, some coastal ecosystems will be submerged and converted to open water, and saltwater intrusion will allow salt tolerant coastal ecosystems to move inland at the expense of upslope and upriver ecosystems (@Howard2017). 
 
@@ -140,3 +135,4 @@ Wildfire is a natural part of many forest, woodland, and grassland ecosystems. E
 ### Invasive species and pests
 
 For further reading on park-level nonnative species and pests, forest vulnerability briefs are available through the [NPS Eastern Forest Vulnerability](https://www.nps.gov/subjects/climatechange/forestvulnerability.htm) webpage.
+
