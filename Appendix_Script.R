@@ -6,7 +6,7 @@ library(here); library(ggplot2);  library(data.table); library(lubridate); libra
 
 #SiteID defined in main markdown. To run R script independently, replace "params$name" with the park's code
 Hist.data <- paste0("multi-park-historical-v2/")
-Future.data <- paste0("data/", SiteID,"/")
+Future.data <- paste0("data/", params$name, "/")
 
 ##################
 #Load Data
@@ -26,18 +26,12 @@ if(CF_selected == "WarmWet_HotDry") {
   CF_abbreviation <- "WW-HD"
   CF1.Name <- "Warm Wet"
   CF2.Name <- "Hot Dry"
-  colors2<- colors5[c(1,4)] # Select pair of climate futures - WarmWet/HotDry
-  colors3<-c("white",colors2)
-  col<- c("darkgray",colors2)  # WarmWet/HotDry
   CFDir = paste0(OutDir,"WarmWet_HotDry/") # for .csv's
 } else{
   FutureSubset <- CFs_all[c(4,2)]; CFs = FutureSubset  # Pick pair of climate futures.
   CF_abbreviation <- "WD-HW"
   CF1.Name <- "Warm Dry"
   CF2.Name <- "Hot Wet"
-  colors2<- colors5[c(3,2)] # Select pair of climate futures - WarmDry/HotWet
-  colors3<-c("white",colors2)
-  col<- c("darkgray", colors2)  # WarmDry/HotWet
   CFDir = paste0(OutDir,"WarmDry_HotWet/") # for .csv's
 }
 TableDir = paste0(CFDir,"tables/") # for .csv's
@@ -49,9 +43,6 @@ AnnualWB <- read.csv(paste0(TableDir,"WB-Annual.csv")) %>%
   left_join(WB_GCMs,by="GCM") %>% 
   mutate(sum_d.in = sum_d.mm/ 25.4,
          sum_aet.in = sum_aet.mm / 25.4)
-AnnualWB <- AnnualWB %>%
-  replace_na(list(CF = "Historical")) %>%
-  mutate(CF = factor(CF, levels=c("Historical",CFs)))
 Drought.char <- read.csv(paste0(TableDir, "Drought_characteristics.csv"))
 
 
@@ -59,7 +50,7 @@ Drought.char <- read.csv(paste0(TableDir, "Drought_characteristics.csv"))
 Historical.AnnualMeans <- read.csv("Annual-Averages.csv", header = TRUE)
 Historical.AnnualMeans <- filter(Historical.AnnualMeans, ID == SiteID)
 Historical.Regression <- read.csv(paste0(Hist.data, park$UNIT_CODE, "-Regression Table.csv"))
-Historical.Anomalies <- read.csv(paste0(Hist.data, "ALL-Anomalies-table 2.csv"))
+Historical.Anomalies <- read.csv(paste0(Hist.data, "ALL-Anomalies-table-2.csv"))
 
 # Historical
 Exposure.Data <- data.frame(SiteID = SiteID)
@@ -203,6 +194,9 @@ img_cropped
 output_path <- paste0("exposure-report-photos/", park$UNIT_CODE, "_cropped.jpg")
 image_write(img_cropped, path = output_path)
 
+######### Historical climate change #########
+Exposure.Data$PercentTYearsCondition <- ifelse(Exposure.Data$Tavg.Anomalies.recent.percent > 9.2, paste0(", and these anomalies were exceeded in ", Exposure.Data$Tavg.Anomalies.years, " years since 2000 (", Exposure.Data$Tavg.Anomalies.recent.percent, "% of years)."), paste0("."))
+
 ######### Projected climate change and related impacts #########
 # Precipitation changes either increasing for all models or just one
 Exposure.Data$PrcpModels <- ifelse(Exposure.Data$Future.DeltaPr.min < 0, paste0("Projected changes in precipitation are less clear, with some models projecting a decrease in average annual precipitation by ", Exposure.Data$Future.DeltaPr.min, " inches (",Exposure.Data$Future.DeltaPr.min.percent,"%) and others projecting an increase of +", Exposure.Data$Future.DeltaPr.max, " inches (+",Exposure.Data$Future.DeltaPr.max.percent,"%)."), paste0("All climate models project increases in precipitation, ranging from +", Exposure.Data$Future.DeltaPr.min, " (+",Exposure.Data$Future.DeltaPr.min.percent,"%) to +", Exposure.Data$Future.DeltaPr.max, " inches (+",Exposure.Data$Future.DeltaPr.max.percent,"%)."))
@@ -218,6 +212,8 @@ Exposure.Data$TavgCompare <- ifelse(All.Means$TavgF[2] > All.Means$TavgF[1] & Al
 ######### Annual average temperature and precipitation projections #########
 # Graph colors based on CF
 Exposure.Data$Colors <- ifelse(CF1.Name == "Warm Wet", "blue, and the Hot Dry climate future in red", "orange, and the Hot Wet climate future in green")
+ColorsSupplemental1 <- ifelse(CF1.Name == "Warm Wet", "blue ", "orange ")
+ColorsSupplemental2 <- ifelse(CF1.Name == "Warm Wet", "red ", "green ")
 
 # Future precipitation explanation
 Exposure.Data$WettestCF <- ifelse(Exposure.Data$DeltaPrcp.CF1 > Exposure.Data$DeltaPrcp.CF2, CF1.Name, CF2.Name)
@@ -303,7 +299,7 @@ Exposure.Data$Prcp24HrTrend <- case_when(
     paste0("higher in the ", CF1.Name, " scenario but not in the ", CF2.Name, " scenario"),
   Exposure.Data$Future.PrcpIn.CF2 > Exposure.Data$Prcp.max.hist ~
     paste0("higher in the ", CF2.Name, " scenario but not in the ", CF1.Name, " scenario"),
-  TRUE ~ paste0("N/A")
+  TRUE ~ paste0("lower in both climate futures relative to the historical baseline")
 )
 
 ######### Drought #########
@@ -323,14 +319,15 @@ Exposure.Data$DrtCF1Severity <- ifelse(Exposure.Data$Severity.CF1 == TRUE, "more
 
 #  Complex text substitutions for similarities in drought conditions between CFs
 ## TRUE = Worsening drought conditions for the specific metric (e.g. shorter drought-free intervals = TRUE)
+### NOT USING THIS ACTIVELY IN .RMD ANYMORE. Needs adjustments.
 Exposure.Data$DrtTrendID <- paste(Exposure.Data$Severity.CF1, Exposure.Data$Duration.CF1, Exposure.Data$DrtFree.CF1, Exposure.Data$Severity.CF2, Exposure.Data$Duration.CF2, Exposure.Data$DrtFree.CF2, sep = "-")
 trend_lookup <- list(
-  "TRUE-TRUE-TRUE-TRUE-TRUE-TRUE" = paste0("For both the ", CF1.Name, " and ", CF2.Name, " climate futures at ", params$name, ", drought duration and severity are projected to increase and the drought-free interval is projected to decrease, relative to the past. These projections are aligned with research showing that climate change may lead to droughts that are longer and more severe than what has occurred historically, with shorter periods between drought events for resources to recover."),
-  "FALSE-TRUE-TRUE-FALSE-TRUE-TRUE" = paste0("For both the ", CF1.Name, " and ", CF2.Name, " climate futures at ", params$name, ", drought duration and severity are projected to increase, but the drought-free interval is also projected to increase, relative to the past. These projections are aligned with research showing that climate change may lead to droughts that are longer and more severe than what has occurred historically."),
-  "FALSE-FALSE-TRUE-FALSE-FALSE-TRUE" = paste0("For both the ", CF1.Name, " and ", CF2.Name, " climate futures at ", params$name, ", drought duration is projected to increase, but severity is projected to decrease and the drought-free interval is projected to increase, relative to the past. These projections are aligned with research showing that climate change may lead to droughts that are longer than what has occurred historically."),
-  "FALSE-TRUE-FALSE-FALSE-TRUE-FALSE" = paste0("For both the ", CF1.Name, " and ", CF2.Name, " climate futures at ", params$name, ", drought severity is projected to increase, but duration is projected to decrease and the drought-free interval is projected to increase, relative to the past. These projections are aligned with research showing that climate change may lead to droughts that are more severe than what has occurred historically."),
-  "TRUE-FALSE-TRUE-TRUE-FALSE-TRUE" = paste0("For both the ", CF1.Name, " and ", CF2.Name, " climate futures at ", params$name, ", drought duration is projected to increase and the drought-free interval is projected to decrease, but severity is also projected to decrease, relative to the past. These projections are aligned with research showing that climate change may lead to droughts that are longer and more frequent than what has occurred historically."),
-  "TRUE-TRUE-FALSE-TRUE-TRUE-FALSE" = paste0("For both the ", CF1.Name, " and ", CF2.Name, " climate futures at ", params$name, ", drought severity is projected to increase considerably and the drought-free interval is projected to decrease, but the duration is also projected to decrease, relative to the past. These projections are aligned with research showing that climate change may lead to droughts that are longer and more severe than what has occurred historically.")
+  "TRUE-TRUE-TRUE-TRUE-TRUE-TRUE" = paste0("For both the ", CF1.Name, " and ", CF2.Name, " climate futures at ", params$name, ", drought duration and severity are projected to increase and the drought-free interval is projected to decrease, relative to the past."),
+  "FALSE-TRUE-TRUE-FALSE-TRUE-TRUE" = paste0("For both the ", CF1.Name, " and ", CF2.Name, " climate futures at ", params$name, ", drought duration and severity are projected to increase, but the drought-free interval is also projected to increase, relative to the past."),
+  "FALSE-FALSE-TRUE-FALSE-FALSE-TRUE" = paste0("For both the ", CF1.Name, " and ", CF2.Name, " climate futures at ", params$name, ", drought duration is projected to increase, but severity is projected to decrease and the drought-free interval is projected to increase, relative to the past."),
+  "FALSE-TRUE-FALSE-FALSE-TRUE-FALSE" = paste0("For both the ", CF1.Name, " and ", CF2.Name, " climate futures at ", params$name, ", drought severity is projected to increase, but duration is projected to decrease and the drought-free interval is projected to increase, relative to the past."),
+  "TRUE-FALSE-TRUE-TRUE-FALSE-TRUE" = paste0("For both the ", CF1.Name, " and ", CF2.Name, " climate futures at ", params$name, ", drought duration is projected to increase and the drought-free interval is projected to decrease, but severity is also projected to decrease, relative to the past."),
+  "TRUE-TRUE-FALSE-TRUE-TRUE-FALSE" = paste0("For both the ", CF1.Name, " and ", CF2.Name, " climate futures at ", params$name, ", drought severity is projected to increase considerably and the drought-free interval is projected to decrease, but the duration is also projected to decrease, relative to the past.")
 )
 Exposure.Data$DrtCFsTrend <- ifelse(Exposure.Data$DrtTrendID %in% names(trend_lookup), unlist(trend_lookup[Exposure.Data$DrtTrendID]), " ")
 
@@ -457,6 +454,7 @@ Exposure.Data$AET3 <- mean(AnnualWB$sum_aet.in[which(AnnualWB$year<=2012)])
 
 Exposure.Data <- Exposure.Data %>% mutate_if(is.numeric, round, digits=1) #Rounding all variables
 
+
 #################################    
 # Creating alt text & Excel sheet
 #################################
@@ -489,6 +487,48 @@ AltExPrcp <- case_when(
   TRUE ~ paste("Graph showing minimal change in days per year where precipitation is greater than the historical 99th percentile under either climate future.")
 )
 
+Exposure.Data$AltDroughtID <- paste(Exposure.Data$Severity.CF1, Exposure.Data$Duration.CF1, Exposure.Data$DrtFree.CF1, Exposure.Data$Severity.CF2, Exposure.Data$Duration.CF2, Exposure.Data$DrtFree.CF2, sep = "-")
+  alt_trend_lookup <- list(
+    "TRUE-TRUE-TRUE-TRUE-TRUE-TRUE" = paste0("Bar graphs showing drought duration and severity are projected to increase and the drought-free interval is projected to decrease for both climate futures."),
+    "FALSE-FALSE-FALSE-FALSE-FALSE-FALSE" = paste0("Bar graphs showing drought duration and severity are projected to decrease and the drought-free interval is projected to increase for both climate futures."),
+    "FALSE-TRUE-TRUE-FALSE-TRUE-TRUE" = paste0("Bar graphs showing drought severity is projected to decrease, but drought duration is projected to increase and the drought-free interval is projected to decrease for both climate futures."),
+    "FALSE-FALSE-TRUE-FALSE-FALSE-TRUE" = paste0("Bar graphs showing drought duration and severity are projected to decrease, but the drought-free interval is also projected to decrease for both climate futures."),
+    "FALSE-TRUE-FALSE-FALSE-TRUE-FALSE" = paste0("Bar graphs showing drought severity is projected to decrease and the drought-free interval is projected to increase, but duration is projected to increase for both climate futures."),
+    "TRUE-FALSE-TRUE-TRUE-FALSE-TRUE" = paste0("Bar graphs showing drought severity is projected to increase and the drought-free interval is projected to decrease, but duration is projected to decrease for both climate futures."),
+    "TRUE-TRUE-FALSE-TRUE-TRUE-FALSE" = paste0("Bar graphs showing drought severity and duration are projected to increase considerably, but the drought-free interval is projected to increase for both climate futures."),
+    "FALSE-FALSE-FALSE-TRUE-TRUE-TRUE" = paste0("Bar graphs showing increasing severity and duration of droughts, and a shorter drought-free interval for the ", CF2.Name, " climate future. The ", CF1.Name, " future shows decreasing drought severity and duration, with an increasing drought-free interval."),
+    "TRUE-FALSE-FALSE-TRUE-TRUE-TRUE" = paste0("Bar graphs showing increasing severity and duration of droughts, and a shorter drought-free interval for the ", CF2.Name, " climate future. The ", CF1.Name, " future shows decreasing drought duration and an increasing drought-free interval, but increasing drought severity."),
+    "TRUE-TRUE-FALSE-TRUE-TRUE-TRUE" = paste0("Bar graphs showing increasing severity and duration of droughts, and a shorter drought-free interval for the ", CF2.Name, " climate future. The ", CF1.Name, " future shows increasing drought severity and duration, with an increasing drought-free interval."),
+    "FALSE-TRUE-FALSE-TRUE-TRUE-TRUE" = paste0("Bar graphs showing increasing severity and duration of droughts, and a shorter drought-free interval for the ", CF2.Name, " climate future. The ", CF1.Name, " future shows decreasing drought severity and increasing drought-free interval, but increasing drought duration."),
+    "FALSE-TRUE-TRUE-TRUE-TRUE-TRUE" = paste0("Bar graphs showing increasing severity and duration of droughts, and a shorter drought-free interval for the ", CF2.Name, " climate future. The ", CF1.Name, " future shows decreasing drought severity, but an increasing drought duration and a shortened drought-free interval."),
+    "FALSE-FALSE-TRUE-TRUE-TRUE-TRUE" = paste0("Bar graphs showing increasing severity and duration of droughts, and a shorter drought-free interval for the ", CF2.Name, " climate future. The ", CF1.Name, " future shows decreasing drought severity and duration, but a shortened drought-free interval."),
+    "TRUE-FALSE-TRUE-TRUE-TRUE-TRUE" = paste0("Bar graphs showing increasing severity and duration of droughts, and a shorter drought-free interval for the ", CF2.Name, " climate future. The ", CF1.Name, " future shows increasing drought severity and a shortened drought-free interval, but a decrease in drought duration."),
+    "FALSE-FALSE-FALSE-FALSE-TRUE-TRUE" = paste0("Bar graphs showing decreasing severity and a shorter drought-free interval for the ", CF2.Name, " climate future, with longer drought duration. The ", CF1.Name, " future shows decreasing drought severity, drought duration, and a longer drought-free interval."),
+    "FALSE-FALSE-TRUE-FALSE-FALSE-FALSE" = paste0("Bar graphs showing decreasing drought severity and duration, with a longer drought-free interval for the ", CF2.Name, " climate future. The ", CF1.Name, " future shows decreasing drought severity and duration, and slightly shorter drought-free interval compared to the historical period."),
+    "FALSE-FALSE-FALSE-TRUE-FALSE-FALSE" = paste0("Bar graphs showing increasing severity of droughts, shorter duration, and longer drought-free interval for the ", CF2.Name, " climate future. The ", CF1.Name, " future shows decreasing drought severity, drought duration, and a longer drought-free interval."),
+    "FALSE-FALSE-TRUE-TRUE-FALSE-FALSE" = paste0("Bar graphs showing increasing severity of droughts, shorter duration, and longer drought-free interval for the ", CF2.Name, " climate future. The ", CF1.Name, " future shows decreasing drought severity, drought duration, and a shorter drought-free interval."),
+    "TRUE-TRUE-TRUE-TRUE-TRUE-FALSE" = paste0("Bar graphs showing increasing duration and severity of droughts, with a longer drought-free interval for the ", CF2.Name, " climate future. The ", CF1.Name, " future shows increasing drought severity, duration, and a shorter drought-free interval compared to the historical period."),
+    "FALSE-FALSE-TRUE-FALSE-TRUE-FALSE" = paste0("Bar graphs showing decreasing severity of droughts, with a longer drought-free interval and drought duration for the ", CF2.Name, " climate future. The ", CF1.Name, " future shows decreasing drought severity and duration, and a shorter drought-free interval compared to the historical period."),
+    "TRUE-TRUE-FALSE-TRUE-FALSE-TRUE" = paste0("Bar graphs showing increasing severity of droughts and a shorter drought-free interval, but decreasing drought duration for the ", CF2.Name, " climate future. The ", CF1.Name, " future shows increasing drought severity and duration, but a longer drought-free interval compared to the historical period."),
+    "TRUE-TRUE-TRUE-FALSE-TRUE-FALSE" = paste0("Bar graphs showing increasing duration of droughts, but a longer drought-free interval and similar severity for the ", CF2.Name, " climate future. The ", CF1.Name, " future shows increasing drought severity and duration, with a shorter drought-free interval compared to the historical period."),
+    "FALSE-FALSE-FALSE-FALSE-TRUE-FALSE" = paste0("Bar graphs showing decreasing duration of droughts, a longer drought-free interval, and similar severity for the ", CF2.Name, " climate future. The ", CF1.Name, " future shows decreasing drought severity and duration, with a longer drought-free interval compared to the historical period."),
+    "TRUE-FALSE-TRUE-FALSE-FALSE-TRUE" = paste0("Bar graphs showing decreasing severity and duration of droughts, and a shorter drought-free interval for the ", CF2.Name, " climate future. The ", CF1.Name, " future shows increasing drought severity and duration, with a shorter drought-free interval compared to the historical period."),
+    "TRUE-FALSE-FALSE-TRUE-TRUE-FALSE" = paste0("Bar graphs showing increasing severity and duration of droughts, but a longer drought-free interval for the ", CF2.Name, " climate future. The ", CF1.Name, " future shows increasing drought severity, but decreasing drought duration and a longer drought-free interval compared to the historical period."),
+    "TRUE-TRUE-FALSE-FALSE-FALSE-FALSE" = paste0("Bar graphs showing decreasing severity and duration of droughts, and a longer drought-free interval for the ", CF2.Name, " climate future. The ", CF1.Name, " future shows increasing drought severity and duration, but a longer drought-free interval compared to the historical period."),
+    "TRUE-FALSE-FALSE-FALSE-FALSE-TRUE" = paste0("Bar graphs showing decreasing severity and duration of droughts, but a shorter drought-free interval for the ", CF2.Name, " climate future. The ", CF1.Name, " future shows increasing drought severity, but a longer drought-free interval and shorter duration compared to the historical period."),
+    "TRUE-FALSE-FALSE-FALSE-FALSE-FALSE" = paste0("Bar graphs showing decreasing severity and duration of droughts, with a longer drought-free interval for the ", CF2.Name, " climate future. The ", CF1.Name, " future shows increasing drought severity, but a longer drought-free interval and shorter duration compared to the historical period."),
+    "TRUE-TRUE-TRUE-FALSE-FALSE-TRUE" = paste0("Bar graphs showing decreasing severity and duration of droughts, but a shorter drought-free interval for the ", CF2.Name, " climate future. The ", CF1.Name, " future shows increasing drought severity and duration, with a shorter drought-free interval compared to the historical period."),
+    "TRUE-TRUE-TRUE-TRUE-FALSE-FALSE" = paste0("Bar graphs showing increasing severity of droughts, but shorter duration and a longer drought-free interval for the ", CF2.Name, " climate future. The ", CF1.Name, " future shows increasing drought severity and duration, with a shorter drought-free interval compared to the historical period."),
+    "TRUE-TRUE-TRUE-FALSE-FALSE-FALSE" = paste0("Bar graphs showing decreasing severity of droughts, shorter duration, and longer drought-free intervals for the ", CF2.Name, " climate future. The ", CF1.Name, " future shows increasing drought severity and duration, with a shorter drought-free interval compared to the historical period."),
+    "TRUE-FALSE-TRUE-TRUE-TRUE-FALSE" = paste0("Bar graphs showing increasing severity and duration of droughts, with longer drought-free intervals for the ", CF2.Name, " climate future. The ", CF1.Name, " future shows increasing drought severity, decreasing drought duration, and a shorter drought-free interval compared to the historical period."),
+    "FALSE-FALSE-TRUE-TRUE-TRUE-FALSE" = paste0("Bar graphs showing increasing severity and duration of droughts, with longer drought-free intervals for the ", CF2.Name, " climate future. The ", CF1.Name, " future shows decreasing drought severity and duration, but a shorter drought-free interval compared to the historical period."),
+    "TRUE-TRUE-FALSE-FALSE-TRUE-FALSE" = paste0("Bar graphs showing decreasing severity of droughts and longer drought-free intervals, but increasing duration for the ", CF2.Name, " climate future. The ", CF1.Name, " future shows increasing drought severity and duration, but a longer drought-free interval compared to the historical period."),
+    "FALSE-FALSE-FALSE-TRUE-TRUE-FALSE" = paste0("Bar graphs showing increasing severity and duration of droughts, with longer drought-free intervals for the ", CF2.Name, " climate future. The ", CF1.Name, " future shows decreasing drought severity and duration, with a longer drought-free interval compared to the historical period."),
+    "FALSE-FALSE-FALSE-FALE-FALSE-TRUE" = paste0("Bar graphs showing decreasing severity and duration of droughts under both climate futures. The ", CF2.Name, " climate future is projected to experience shorter drought-free intervals, and the ", CF1.Name, " future shows longer drought-free intervals compared to the historical period.")
+  )
+  AltDrought <- ifelse(Exposure.Data$AltDroughtID %in% names(alt_trend_lookup), unlist(alt_trend_lookup[Exposure.Data$AltDroughtID]), " ")
+
+
 Alt1 <- paste0("")
 Alt2 <- paste0("Scenic view of the park.")
 Alt3 <- paste0("Upper plot showing an increasing trend in temperature from 1895 to 2022, and a more dramatic increase from 1970 to 2022. Lower plot showing precipitation has ", Exposure.Data$Prcp.trend, " since 1970 and ", Exposure.Data$Prcp.trend.1900, " for the entire period record.")
@@ -498,7 +538,7 @@ Alt6 <- paste0("Graph showing ", AltPrcpCFs, " compared to the historical period
 Alt7 <- paste0(AltExTemps)
 Alt8 <- paste0(AltExPrcp)
 Alt9 <- paste0("SPEI graphs showing a timeseries for drought in each climate future. Both show more years with dry conditions compared to the historical period.")
-Alt10 <- paste0("Bar graphs showing increasing severity and duration of droughts, and a shorter drought-free interval for both climate futures.")
+Alt10 <- paste0(AltDrought)
 Alt11 <- paste0("Plot showing that the mean annual climatic water deficit is projected to ", Exposure.Data$WBtrend, " compared to the historical period.")
 
 wb <- createWorkbook()
