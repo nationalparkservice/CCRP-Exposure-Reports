@@ -1,0 +1,157 @@
+---
+params:
+  name:
+    label: Park Name
+    value: params$name
+toc: true
+toc_depth: 2
+theme: united
+output:
+  word_document:
+    reference_docx: templateSupplemental.docx
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r Initials, echo=FALSE, message=FALSE, warning=FALSE}
+
+library(stars);library(dplyr);library(ggplot2);library(viridis);library(here);library(ggrepel);library(rlang);library(units);library(knitr);library(glue); library(gt); library(officer);library(officedown); library(abind); library(sf);library(shiny); library(here); library(data.table); library(lubridate); library(openxlsx); library(tidyr); library(raster);library(sp)
+
+
+```
+
+```{r values, include=FALSE}
+# Run Appendix Script
+SiteID = name
+source("Appendix_Script.R", local = knitr::knit_global())
+```
+
+---
+title: "`r LongName` Supplemental Climate Futures for `r CentroidName`"
+---
+(`r lat`, `r long`) 
+
+The NPS Climate Change Response Program [published park-specific climate futures summaries](https://irma.nps.gov/DataStore/Collection/Profile/9441) describing both observed climate changes and plausible climate futures that help inform park responses to climate change. These climate futures help managers navigate uncertainty and promote short- and long-term actions that avoid potential surprises and costly mistakes.  
+
+The climate futures summaries were produced using a [standardized approach](https://irma.nps.gov/DataStore/FileSource/Get?id=2302720&filename=2302720.html) that used the park centroid for analysis, which can provide valuable insights about changing trends, even across a whole park, and help to broadly understand how climate change might impact park resources. This method allows for easy characterization of extreme events and illustration of timeseries for visualizing interannual variability.  
+
+Because `r params$name` is a spatially complex park with multiple climate zones and focal resources at locations with distinct climate characteristics, supplemental climate futures are created at additional locations. Authors of the climate future summaries reached out to park leadership to identify additional locations where climate data could inform park management. Waterhole (`r lat`, `r long`) was identified as one of the three additional locations.  
+
+Since the overall trends at this location align closely with those detailed in the `r params$name` climate future summary, this supplemental document offers minimal interpretation. Instead, it concentrates on presenting climate data that is critical for addressing park resource concerns. 
+
+# Appendix 1. Climate futures table
+
+[Table A1.]{custom-style="Strong"} Projected changes in climate metrics presented in this supplemental. Change values are the difference between the climate metric’s future-period (2035-2065) average and the historical-period (1979-2012) average.
+
+| Climate Metric                                                | Historical                          | `r CF1.Name`                           | `r CF2.Name`                      |
+|-------------------|------------------|------------------|------------------|
+| Change in annual average temperature (°F)   | `r D_Annual$TavgF[1]`   | `r ifelse(Exposure.Data$DeltaTavg.CF1 >= 0, "+", "")``r Exposure.Data$DeltaTavg.CF1`   | `r ifelse(Exposure.Data$DeltaTavg.CF2 >= 0, "+", "")``r Exposure.Data$DeltaTavg.CF2`           |
+| Change in annual precipitation (in)         | `r D_Annual$PrcpIn[1]`   | `r ifelse(Exposure.Data$DeltaPrcp.CF1 >= 0, "+", "")``r Exposure.Data$DeltaPrcp.CF1`   | `r ifelse(Exposure.Data$DeltaPrcp.CF2 >= 0, "+", "")``r Exposure.Data$DeltaPrcp.CF2`         |
+| Change in average winter (DJF) temperature (°F)   | `r Exposure.Data$TempWinterHist`   | `r ifelse(Exposure.Data$DTempWinterCF1 >= 0, "+", "")``r Exposure.Data$DTempWinterCF1`   | `r ifelse(Exposure.Data$DTempWinterCF2 >= 0, "+", "")``r Exposure.Data$DTempWinterCF2`           |
+| Change in average spring (MAM) temperature (°F)   | `r Exposure.Data$TempSpringHist`   | `r ifelse(Exposure.Data$DTempSpringCF1 >= 0, "+", "")``r Exposure.Data$DTempSpringCF1`   | `r ifelse(Exposure.Data$DTempSpringCF2 >= 0, "+", "")``r Exposure.Data$DTempSpringCF2`           |
+| Change in average summer (JJA) temperature (°F)   | `r Exposure.Data$TempSummerHist`   | `r ifelse(Exposure.Data$DTempSummerCF1 >= 0, "+", "")``r Exposure.Data$DTempSummerCF1`   | `r ifelse(Exposure.Data$DTempSummerCF2 >= 0, "+", "")``r Exposure.Data$DTempSummerCF2`           |
+| Change in average fall (SON) temperature (°F)   | `r Exposure.Data$TempFallHist`   | `r ifelse(Exposure.Data$DTempFallCF1 >= 0, "+", "")``r Exposure.Data$DTempFallCF1`   | `r ifelse(Exposure.Data$DTempFallCF2 >= 0, "+", "")``r Exposure.Data$DTempFallCF2`           |
+| Change in average winter (DJF) precipitation (total in)   | `r Exposure.Data$PrcpWinterHist`   | `r ifelse(Exposure.Data$DPrcpWinterCF1 >= 0, "+", "")``r Exposure.Data$DPrcpWinterCF1`   | `r ifelse(Exposure.Data$DPrcpWinterCF2 >= 0, "+", "")``r Exposure.Data$DPrcpWinterCF2`           |
+| Change in average spring (MAM) precipitation (total in)   | `r Exposure.Data$PrcpSpringHist`   | `r ifelse(Exposure.Data$DPrcpSpringCF1 >= 0, "+", "")``r Exposure.Data$DPrcpSpringCF1`   | `r ifelse(Exposure.Data$DPrcpSpringCF2 >= 0, "+", "")``r Exposure.Data$DPrcpSpringCF2`           |
+| Change in average summer (JJA) precipitation (total in)   | `r Exposure.Data$PrcpSummerHist`   | `r ifelse(Exposure.Data$DPrcpSummerCF1 >= 0, "+", "")``r Exposure.Data$DPrcpSummerCF1`   | `r ifelse(Exposure.Data$DPrcpSummerCF2 >= 0, "+", "")``r Exposure.Data$DPrcpSummerCF2`           |
+| Change in average fall (SON) precipitation (total in)   | `r Exposure.Data$PrcpFallHist`   | `r ifelse(Exposure.Data$DPrcpFallCF1 >= 0, "+", "")``r Exposure.Data$DPrcpFallCF1`   | `r ifelse(Exposure.Data$DPrcpFallCF2 >= 0, "+", "")``r Exposure.Data$DPrcpFallCF2`           |
+| Change in days / \> 99th Tmax / year (number of days)        | `r D_Annual$Tmax99[1]`            | `r ifelse(D_Annual$Tmax99[2] >= 0, "+", "")``r D_Annual$Tmax99[2]`            | `r ifelse(D_Annual$Tmax99[3] >= 0, "+", "")``r D_Annual$Tmax99[3]`          |
+| Change in days with 'dangerous' heat index (number of days)  | `r D_Annual$HI.Dan[1]`      | `r ifelse(Exposure.Data$HI.Dan.CF1 >= 0, "+", "")``r Exposure.Data$HI.Dan.CF1`      | `r ifelse(Exposure.Data$HI.Dan.CF2 >= 0, "+", "")``r Exposure.Data$HI.Dan.CF2`          |
+| Change in largest rainfall event (in/day) | `r Exposure.Data$Prcp.max.hist` | `r ifelse(Exposure.Data$PrcpChangeCF1 >= 0, "+", "")``r Exposure.Data$PrcpChangeCF1` | `r ifelse(Exposure.Data$PrcpChangeCF2 >= 0, "+", "")``r Exposure.Data$PrcpChangeCF2`        |
+| Change in days \> 99th precipitation / year (number of days) | `r D_Annual$OverPrecip99[1]`      | `r ifelse(D_Annual$OverPrecip99[2] >= 0, "+", "")``r D_Annual$OverPrecip99[2]`      | `r ifelse(D_Annual$OverPrecip99[3] >= 0, "+", "")``r D_Annual$OverPrecip99[3]`    |
+| Change in average drought duration (years)                    | `r Drought.char$Duration[1]`      | `r ifelse(Exposure.Data$DrtDurChangeCF1 >= 0, "+", "")``r Exposure.Data$DrtDurChangeCF1`      | `r ifelse(Exposure.Data$DrtDurChangeCF2 >= 0, "+", "")``r Exposure.Data$DrtDurChangeCF2`    |
+| Change in drought-free interval (years)                       | `r Drought.char$Drt.Free[1]`      | `r ifelse(Exposure.Data$DrtFreeChangeCF1 >= 0, "+", "")``r Exposure.Data$DrtFreeChangeCF1`      | `r ifelse(Exposure.Data$DrtFreeChangeCF2 >= 0, "+", "")``r Exposure.Data$DrtFreeChangeCF2`    |
+| Change in drought severity                            | `r Drought.char$Severity[1]`      | `r ifelse(Exposure.Data$DrtSevChangeCF1 >= 0, "+", "")``r Exposure.Data$DrtSevChangeCF1`      | `r ifelse(Exposure.Data$DrtSevChangeCF2 >= 0, "+", "")``r Exposure.Data$DrtSevChangeCF2`    |
+| Change in annual average water deficit (in/yr)      | `r Exposure.Data$Hist.meanWB`     | `r ifelse(Exposure.Data$CF1.WBdelta >= 0, "+", "")``r Exposure.Data$CF1.WBdelta`     | `r ifelse(Exposure.Data$CF2.WBdelta >= 0, "+", "")``r Exposure.Data$CF2.WBdelta`   |
+| Change in annual actual evapotranspiration (in/yr)  | `r Exposure.Data$AET3`            | `r ifelse(Exposure.Data$AET1 >= 0, "+", "")``r Exposure.Data$AET1`            | `r ifelse(Exposure.Data$AET2 >= 0, "+", "")``r Exposure.Data$AET2`          |
+
+------------------------------------------------------------------------
+
+```{r, echo=FALSE}
+fig1 <- paste0("data/",params$name,"/",CF_selected,"/figures/TavgF-Timeseries.png")
+```
+
+# Annual Averages
+![[Figure 1.]{custom-style="Strong"} This graph compares observed average annual temperature at `r CentroidName` (°F) (1979-2022) with projected average annual temperature for the two climate futures over the period 2023-2099. The historically observed data is shown in gray, the `r CF1.Name` climate future in `r Exposure.Data$Colors`. The smooth line running through each projection is the 10-year running average for historical observations and future projections. Gray-shaded area represents the time period that was averaged (2035-2065) to summarize future projections for the year 2050 (Table 1).](`r fig1`){width="576"}
+
+```{r, echo=FALSE}
+fig2 <- paste0("data/",params$name,"/",CF_selected,"/figures/PrcpIn-Timeseries.png")
+```
+
+![[Figure 2.]{custom-style="Strong"} This graph compares observed average annual precipitation at `r CentroidName` (inches/year) (1979-2022) with projected average annual precipitation for the two climate futures over the period 2023-2099. The historically observed data is shown in gray, the `r CF1.Name` climate future in `r Exposure.Data$Colors`. The smooth line running through each projection is the 10-year running average for historical observations and future projections. The gray-shaded area represents the time period that was averaged (2035-2065) to summarize future projections for the year 2050 (Table 1).](`r fig2`){width="576"}
+
+# Seasonality
+```{r, echo=FALSE}
+fig3 <- paste0("data/",params$name,"/",CF_selected,"/figures/PrcpIn-Timeseries.png")
+```
+
+![[Figure 3.]{custom-style="Strong"} This plot shows the difference between observed average monthly minimum and maximum temperature (°F) at `r CentroidName` (1979-2022; dashed line) and average monthly minimum and maximum temperature for the two climate futures for the time period 2035-2065. The `r CF1.Name` climate future is `r ColorsSupplemental1`dots and the `r CF2.Name` climate future is `r ColorsSupplemental2`squares.](`r fig3`){width="576"}
+
+```{r, echo=FALSE}
+fig4 <- paste0("data/",params$name,"/",CF_selected,"/figures/PrcpIn-Timeseries.png")
+```
+
+![[Figure 4.]{custom-style="Strong"} This figure shows the percent change between observed average monthly precipitation (% change) at `r CentroidName` (1979-2022; zero line) and average monthly precipitation for the two climate futures for the time period 2035-2065. The `r CF1.Name` climate future is in `r Exposure.Data$Colors`.](`r fig4`){width="576"}
+
+```{r, echo=FALSE}
+fig5 <- paste0("data/",params$name,"/",CF_selected,"/figures/PrcpIn-Timeseries.png")
+```
+
+![[Figure 5.]{custom-style="Strong"} Metrics of growing season length at `r CentroidName`. The bar graph represents the average number of days annually during the growing season historically (1979-2012) and for the two climate futures (2050). Growing season is defined by the CLIMDEX (https://www.climdex.org/) definition of growing season: the number of days between the start of the first spell of warm days in the first half of the year, and the start of the first spell of cold days in the second half of the year. A spell of warm days is defined as six or more days with mean temperature >5 °C (41 °F); a spell of cold days is defined as six or more days with a mean temperature.](`r fig5`){width="576"}
+
+```{r, echo=FALSE}
+fig6 <- paste0("data/",params$name,"/",CF_selected,"/figures/PrcpIn-Timeseries.png")
+```
+
+![[Figure 6.]{custom-style="Strong"} Metrics of days below freezing length at `r CentroidName`. The bar graph represents the average number of days annually below 32 °F historically (1979-2012) and for the two climate futures (2050).](`r fig6`){width="576"}
+
+# Extreme Heat and Precipitation
+```{r, echo=FALSE}
+fig7 <- paste0("data/",params$name,"/",CF_selected,"/figures/Tmax99-Annual-bar.png")
+```
+
+![[Figure 7.]{custom-style="Strong"} Metrics of extreme temperature at `r CentroidName`. The bar graph represents the average number of days annually with temperatures greater than the historical 99th percentile (`r Exposure.Data$Tmax99`) historically (1979-2012) and for the two climate futures (2050).](`r fig7`){width="576"}
+
+```{r, echo=FALSE}
+fig8 <- paste0("data/",params$name,"/",CF_selected,"/figures/OverPrecip99-Annual-bar.png")
+```
+
+![[Figure 8.]{custom-style="Strong"} Average number of days annually with precipitation exceeding the 99th percentile (`r Exposure.Data$HistPrecip99` in.) of precipitation from the historical period 1979-2012 and for each climate future.](`r fig8`){width="576"}
+
+#Water Balance
+```{r, echo=FALSE}
+fig9 <- paste0("data/",params$name,"/",CF_selected,"/figures/D.in-Timeseries.png")
+```
+
+![[Figure 9.]{custom-style="Strong"} This line graph compares observed climatic water deficit at `r CentroidName` (inches/year) (1979-2022) with projected climatic water deficit for the two climate futures over the period 2023-2099. The historical observation data is shown in gray, the `r CF1.Name` climate future in `r Exposure.Data$Colors`. The smooth line running through each projection is the 10-year running average for historical observations and future projections. Gray-shaded area represents the time period that was averaged (2035-2065) to summarize future projections for the year 2050.](`r fig9`){width="576"}
+
+```{r, echo=FALSE}
+fig10 <- paste0("data/",params$name,"/",CF_selected,"/figures/D.in-Timeseries.png")
+```
+
+![[Figure 10.]{custom-style="Strong"} This figure shows the percent change between observed average monthly soil moisture (inches/month) at `r CentroidName` (1979-2022; zero line) and average monthly precipitation for the two climate futures for the time period 2035-2065. The `r CF1.Name` climate future is in `r ColorsSupplemental1`with circles and the `r CF2.Name` climate future is in `r ColorsSupplemental2`with squares. The value were calculated using a water balance model. See [Runyon et al. (2024)](https://irma.nps.gov/DataStore/FileSource/Get?id=2302720&filename=2302720.html) for details.](`r fig10`){width="576"}
+
+```{r, echo=FALSE}
+fig11 <- paste0("data/",params$name,"/",CF_selected,"/figures/D.in-Timeseries.png")
+```
+
+![[Figure 11.]{custom-style="Strong"} This figure shows daily modeled snow water equivalent values (inches) for each year (lines). The historical period (top, gray lines) is observed, gridded climate data (1979-2012) and the two climate futures are from 2035-2065. The `r CF1.Name` climate future is in the middle figure (blue lines) and the bottom figure is the `r CF2.Name` climate future (red lines). The values were calculated using a water balance model. See [Runyon et al. (2024)](https://irma.nps.gov/DataStore/FileSource/Get?id=2302720&filename=2302720.html) for details.](`r fig11`){width="576"}
+
+#Drought
+
+```{r, echo=FALSE}
+fig12 <- paste0("data/",params$name,"/",CF_selected,"/figures/SPEI-Panel.png")
+```
+
+![[Figure 12.]{custom-style="Strong"} Drought metrics for `r CentroidName`. Drought index (SPEI; units = standard deviations from historical) timeseries for each climate future. Below-average SPEI (black bars) indicates dry conditions. The dotted line (SPEI = -0.5) indicates drought conditions.](`r fig12`){width="576"}
+
+```{r, echo=FALSE}
+fig13 <- paste0("data/",params$name,"/",CF_selected,"/figures/Drought-characteristics-panel.png")
+```
+
+![[Figure 13.]{custom-style="Strong"} Drought metrics for `r CentroidName`. (Left) Average drought duration (years) historically (1979-2012) and under each climate future. (Middle) Average drought return interval (years), indicating the expected amount of time between periods of drought, historically and under each climate future. (Right) Average drought severity, a measure of drought intensity multiplied by duration, historically and under each climate future.](`r fig13`){width="576"}
+
+This climate futures summary includes a concise summary of key climate trends, projections, impacts, and planning concepts to empower parks in managing climate change and adapting to an uncertain future. Browse the [NPS Climate Change Response Program](https://www.nps.gov/orgs/ccrp/index.htm) website to find additional information about climate assessments, climate adaptation by parks, and more. If you have questions, contact [Climate_Change@nps.gov](mailto:Climate_Change@nps.gov)
